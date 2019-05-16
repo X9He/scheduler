@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { AppRegistry, View } from 'react-native';
 import Header from './src/components/header'
 import AlbumList from './src/components/AlbumList'
 import DaySchedule from './src/components/DaySchedule'
 
-const App = () => {
-    return (
-        <View>
+class App extends Component {
+    componentWillMount () {
+        console.log('root component mounted')
+    }
+
+    render () {
+        return (
+            <View>
             <Header headerText={'schedulerApp'}/>
             <DaySchedule/>
-        </View>
-    )
-};
-
-
+            </View>
+        );
+    }
+}
 
 
 AppRegistry.registerComponent('schedulerApp', () => App);
