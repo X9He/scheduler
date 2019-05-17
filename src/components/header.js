@@ -10,8 +10,8 @@ const Header = (props) =>{
             <View style={viewStyleLe}>
                 <Button onPress={console.log('pressed')} title={props.userText}/>
                 <Button onPress={console.log('pressed')} title={props.dayText}/>
-                <Button onPress={console.log('pressed')} title={props.weekText}/>
-                <Button onPress={console.log('pressed')} title={props.monText}/>
+                <Button color={'#83868c'} onPress={console.log('pressed')} title={props.weekText}/>
+                <Button color={'#83868c'} onPress={console.log('pressed')} title={props.monText}/>
             </View>
             <View style={viewStyleRi}>
                 <Button onPress={console.log('pressed')} title={props.searchText}/>
@@ -22,18 +22,6 @@ const Header = (props) =>{
 
 
 const styles = {
-    // buttonStyle: {
-    //     backgroundColor: '#EDF4E1',
-    //     justifyContent: 'space-between',
-    //     alignItems: 'baseline',
-    //     height: 90,
-    //     paddingTop: 45,
-    //     shadowColor: '#000',
-    //     shadowOffset: { width: 0, height: 2 },
-    //     shadowOpacity: 0.2,
-    //     elevation: 2,
-    //     position: 'relative'
-    // },
     textStyle: {
         fontSize: 20
     },
