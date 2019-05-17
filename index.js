@@ -12,7 +12,8 @@ class App extends Component {
     render () {
         return (
             <View>
-            <Header headerText={'schedulerApp'}/>
+            <Header userText={'User'} dayText={'Day'} weekText={'Week'} monText={'Month'}
+                    searchText={'Search'} addText={'Add'}/>
             <DaySchedule/>
             </View>
         );
