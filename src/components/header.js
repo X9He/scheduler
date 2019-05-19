@@ -1,14 +1,44 @@
 import React from 'react';
-import {Button, View } from 'react-native';
+import {Text, Button, View } from 'react-native';
+import Menu, { MenuItem, MenuDivider, Position } from "react-native-enhanced-popup-menu";
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Header = (props) =>{
     const {viewStyleRo, viewStyleLe, viewStyleRi } = styles;
 
+    let textRef = React.createRef();
+    let menuUserRef = null;
+   
+    const setUserMenuRef = ref => menuUserRef = ref;
+    const hideUserMenu = () => menuUserRef.hide();
+    const showUserMenu = () => menuUserRef.show(textRef.current, stickTo = Position.BOTTOM_LEFT);
+   
+    const onUserPress = () => showUserMenu();
+
     return (
         <View style={viewStyleRo}>
             <View style={viewStyleLe}>
-                <Button onPress={console.log('pressed')} title={props.userText}/>
+
+                <Text
+                    ref={textRef}
+                    style={{ fontSize: 20, textAlign: "center" }}
+                    >
+                </Text>
+
+                <Button onPress={onUserPress} title={props.userText}>
+                </Button>
+
+                <Menu
+                    ref={setUserMenuRef}
+                    >
+                    <MenuItem onPress={hideUserMenu} disabled>Account</MenuItem>
+                    <MenuItem onPress={hideUserMenu} disabled>Profile</MenuItem>
+                    <MenuItem onPress={hideUserMenu}>Setting</MenuItem>
+                    <MenuDivider />
+                    <MenuItem onPress={hideUserMenu}>Sign In</MenuItem>
+                </Menu>
+
+
                 <Button onPress={console.log('pressed')} title={props.dayText}/>
                 <Button color={'#83868c'} onPress={console.log('pressed')} title={props.weekText}/>
                 <Button color={'#83868c'} onPress={console.log('pressed')} title={props.monText}/>

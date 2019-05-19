@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import DefaultHourTemplate from './DefaultHourTemplate'
 
 class DaySchedule extends Component {
     render() {
         const { topStyle } = styles;
         return (
+            <ScrollView>
             <View>
                 <View style={topStyle}/>
                 <DefaultHourTemplate hourText={'12 AM'}/>
@@ -33,7 +34,9 @@ class DaySchedule extends Component {
                 <DefaultHourTemplate hourText={'10 PM'}/>
                 <DefaultHourTemplate hourText={'11 PM'}/>
                 <DefaultHourTemplate hourText={'12 PM'}/>
-            </View>);
+                <DefaultHourTemplate hourText={''}/>
+            </View>
+            </ScrollView>);
     }
 }
 
