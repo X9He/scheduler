@@ -6,15 +6,6 @@ class DefaultHourTemplate extends Component {
         const { viewStyle, timeTextStyle } = styles;
         return (
             <View style={viewStyle}>
-                <View
-                style={{
-                    borderTopColor: 'black',
-                    borderTopWidth: 1,
-                    width: '45%',
-                    height: 60,
-                    opacity: 0.3
-                }}
-                />
                 <View>
                     <Text style={timeTextStyle}>{this.props.hourText}</Text>
                 </View>
@@ -22,7 +13,7 @@ class DefaultHourTemplate extends Component {
                 style={{
                     borderTopColor: 'black',
                     borderTopWidth: 1,
-                    width: '50%',
+                    width: '100%',
                     height: 60,
                     opacity: 0.3
                 }}
