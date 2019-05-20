@@ -28,8 +28,13 @@ const styles = {
         flexDirection: 'row'
     },
     timeTextStyle:{
-        marginTop: 0,
-        width: 50
+        // fran is below commented
+        // marginTop: 0,
+        // width: 50
+        marginTop: -7,
+        left: 10,
+        width: 60,
+        end: 10
     }
 };
 
