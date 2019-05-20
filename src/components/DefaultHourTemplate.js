@@ -28,7 +28,9 @@ const styles = {
     },
     timeTextStyle:{
         marginTop: -7,
-        width: 45
+        left: 10,
+        width: 60,
+        end: 10
     }
 };
 
