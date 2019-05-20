@@ -14,6 +14,7 @@ class DefaultHourTemplate extends Component {
                     borderTopColor: 'black',
                     borderTopWidth: 1,
                     width: '100%',
+                    top: 7,
                     height: 60,
                     opacity: 0.3
                 }}
@@ -27,8 +28,8 @@ const styles = {
         flexDirection: 'row'
     },
     timeTextStyle:{
-        marginTop: -7,
-        width: 45
+        marginTop: 0,
+        width: 50
     }
 };
 

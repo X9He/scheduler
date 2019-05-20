@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { AppRegistry, View } from 'react-native';
 import Header from './src/components/header'
-import AlbumList from './src/components/AlbumList'
 import DaySchedule from './src/components/DaySchedule'
+import LoginPage from './src/components/LoginPage'
 
 class App extends Component {
     componentWillMount () {
@@ -12,9 +12,9 @@ class App extends Component {
     render () {
         return (
             <View>
-            <Header userText={'User'} dayText={'Day'} weekText={'Week'} monText={'Month'}
-                    searchText={'Search'} addText={'Add'}/>
-            <DaySchedule/>
+                {/*<Header userText={'User'} dayText={'Day'} weekText={'Week'} monText={'Month'}*/}
+                {/*    searchText={'Search'} addText={'Add'}/>*/}
+                <LoginPage/>
             </View>
         );
     }
