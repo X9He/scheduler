@@ -4,6 +4,7 @@ import Header from './src/components/header'
 import DaySchedule from './src/components/DaySchedule'
 import LoginPage from './src/components/LoginPage'
 import Menu, { MenuItem, MenuDivider, Position } from "react-native-enhanced-popup-menu";
+import SignupPage from './src/components/SignupPage'
 
 class App extends Component {
     componentWillMount () {
@@ -15,6 +16,7 @@ class App extends Component {
             <View>
                 {/*<Header userText={'User'} dayText={'Day'} weekText={'Week'} monText={'Month'}*/}
                 {/*    searchText={'Search'} addText={'Add'}/>*/}
+                {/*<SignupPage/>*/}
                 <LoginPage/>
             </View>
         );

@@ -17,10 +17,10 @@ class LoginPage extends Component{
         return (
             <View>
                 <View style={infoStyle}>
-                    {/*<Image*/}
-                    {/*    style={{width:200 , height: 80, marginLeft:90, marginBottom: 30}}*/}
-                    {/*    source={require('../img/IconLogo.jpg')}*/}
-                    {/*/>*/}
+                    <Image
+                        style={{width:100 , height: 100, marginLeft:140, marginBottom: 40}}
+                        source={require('../img/icon.png')}
+                    />
                     <Text style={{fontWeight: 'bold',fontSize: 45, marginLeft:15,color:'#474c3d'}}>
                         Log in
                     </Text>
@@ -29,7 +29,7 @@ class LoginPage extends Component{
                     </Text>
                     <TextInput
                         style={{height: 50, backgroundColor: '#e2edcb', margin: 15}}
-                        placeholder=" e,g:xxxx@gamil.com"
+                        placeholder=" e,g: xxxx@gamil.com"
                         onChangeText={(email) => this.setState({email})} value={this.state.email}
                         editable={true} maxLength={40}
                     />
@@ -42,20 +42,20 @@ class LoginPage extends Component{
                         secureTextEntry={true}
                         placeholder=" Input your password :)"
                         onChangeText={(passwordText) => this.setState({passwordText})}
-                        editable={true} maxLength={16}
+                        editable={true} maxLength={16} minLength={8}
                     />
                     <Image
-                        style={{width:30 , height: 30, marginLeft:170, marginTop: 40}}
+                        style={{width:35 , height: 35, marginLeft:170, marginTop: 40}}
                         source={require('../img/go.png')}
                     />
                 </View>
 
                 <View style={signupStyle}>
-                    <Text style={{marginLeft:87, color:'#474c3d', marginTop:70}}>
+                    <Text style={{marginLeft:87, color:'#474c3d', marginTop:90}}>
                         Don't have a account?
                     </Text>
-                    <Text style={{color: '#9ea886', marginLeft:3, marginTop:70}}
-                          onPress={() => LinkingIOS.openURL('https://www.google.ca/webhp?hl=ja')}>
+                    <Text style={{color: '#9ea886', marginLeft:3, marginTop:90}}
+                          onPress={() => 'SignupPage'}>
                         Sign up:)
                     </Text>
                 </View>
@@ -70,17 +70,8 @@ const styles = {
         backgroundColor: 'white',
         justifyContent: 'flex-start',
         flexDirection: 'column',
-        top: 230,
+        top: 145,
         elevation:10,
-        position: 'relative'
-    },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        flexDirection: 'column',
-        top: 230,
-        margin:150,
         position: 'relative'
     },
     signupStyle:{
@@ -88,7 +79,7 @@ const styles = {
         justifyContent: 'flex-start',
         flexDirection: 'row',
         elevation:10,
-        marginTop:250,
+        marginTop:150,
         position: 'relative'
     }
 }
