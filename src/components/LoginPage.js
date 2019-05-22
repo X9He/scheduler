@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, Image, TouchableOpacity} from 'react-native';
+import SignupPage from './SignupPage';
 
 class LoginPage extends Component{
     constructor(props) {

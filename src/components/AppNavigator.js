@@ -1,10 +1,7 @@
 import { createStackNavigator } from 'react-navigation';
-import Home from './Home';
+import LoginPage from './LoginPage';
 
 const AppNavigator = createStackNavigator({
-  Index: { screen: Index },
-  Search: { screen: Search},
-  Login: { screen: Login},
+  MainPage: {screen: MainPage},
+  Login: { screen: LoginPage},
 });
-
-export default AppNavigator;

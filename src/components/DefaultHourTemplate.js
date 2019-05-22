@@ -13,8 +13,9 @@ class DefaultHourTemplate extends Component {
                 style={{
                     borderTopColor: 'black',
                     borderTopWidth: 1,
-                    width: '100%',
+                    width: '84%',
                     top: 7,
+                    left: 5,
                     height: 60,
                     opacity: 0.3
                 }}
@@ -28,12 +29,11 @@ const styles = {
         flexDirection: 'row'
     },
     timeTextStyle:{
-        // fran is below commented
-        // marginTop: 0,
-        // width: 50
-        marginTop: -7,
+        marginTop: 0,
+        width: 50,
+        // marginTop: -7,
         left: 10,
-        width: 60,
+        // width: 60,
         end: 10
     }
 };
