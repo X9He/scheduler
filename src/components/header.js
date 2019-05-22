@@ -25,7 +25,7 @@ const Header = (props) =>{
                     >
                 </Text>
 
-                <Button onPress={onUserPress} title={props.userText}>
+                <Button color={'#6d775c'} onPress={onUserPress} title={props.userText}>
                 </Button>
 
                 <Menu
@@ -39,13 +39,13 @@ const Header = (props) =>{
                 </Menu>
 
 
-                <Button onPress={console.log('pressed')} title={props.dayText}/>
-                <Button color={'#83868c'} onPress={console.log('pressed')} title={props.weekText}/>
-                <Button color={'#83868c'} onPress={console.log('pressed')} title={props.monText}/>
+                <Button color={'#6d775c'} onPress={console.log('pressed')} title={props.dayText}/>
+                <Button color={'#b0c18f'} onPress={console.log('pressed')} title={props.weekText}/>
+                <Button color={'#b0c18f'} onPress={console.log('pressed')} title={props.monText}/>
             </View>
             <View style={viewStyleRi}>
-                <Button onPress={console.log('pressed')} title={props.searchText}/>
-                <Button onPress={console.log('pressed')} title={props.addText}/>
+                <Button color={'#6d775c'} onPress={console.log('pressed')} title={props.searchText}/>
+                <Button color={'#6d775c'} onPress={console.log('pressed')} title={props.addText}/>
             </View>
         </View>);
 };
