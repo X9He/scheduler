@@ -2,10 +2,21 @@ import React, { Component } from 'react';
 import { View, ScrollView } from 'react-native';
 import DefaultHourTemplate from './DefaultHourTemplate';
 import Header from "./Header";
+import { connect } from 'react-redux';
 
 class DaySchedule extends Component {
+    currentDay = null;
+    toRender = [];
+
+    componentWillMount(): void {
+        if(!this.currentDay){
+            this.currentDay = "2019-05-19T00:00:00.000Z"
+        }
+    }
+
     render() {
         const { topStyle } = styles;
+
         return (
             <ScrollView>
                 <View>
@@ -51,4 +62,9 @@ const styles = {
     }
 };
 
-export default DaySchedule;
+const mapStateToPros = state => {
+    console.log(state);
+    return { events : state.events};
+};
+
+export default connect(mapStateToPros)(DaySchedule);
