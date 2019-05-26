@@ -1,0 +1,20 @@
+[
+  {
+    "2019-05-19T00:00:00.000Z": [
+      {
+        "beginTime": "2019-05-19T19:15:00.000Z",
+        "endTime": "2019-05-19T19:20:00.000Z",
+        "eventType": 1,
+        "eventColor": "#383838",
+        "requireNotification": true
+      },
+      {
+        "beginTime": "2019-05-19T19:25:00.000Z",
+        "endTime": "2019-05-19T19:30:00.000Z",
+        "eventType": 1,
+        "eventColor": "#383838",
+        "requireNotification": true
+      }
+    ]
+  }
+]
