@@ -12,6 +12,7 @@ class App extends Component{
 
   render () {
     return (
+        // provider is the glue that glues redux and react
         <Provider store={createStore(reducers)}>
           <Router/>
         </Provider>

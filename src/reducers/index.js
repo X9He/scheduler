@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
+import EventsReducer from './EventsReducer'
 
 
 export default combineReducers({
-    libraries: () => []
+    // assigned EventsReducer to key of "events"
+    events: EventsReducer
 });
+
+
