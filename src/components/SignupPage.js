@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, Image} from 'react-native';
+import {Actions} from "react-native-router-flux";
 
 class SignupPage extends Component{
     constructor(props) {
@@ -19,6 +20,9 @@ class SignupPage extends Component{
         let password
         let name
         const { mainStyle } = styles;
+        const goToLogin = () => {
+            Actions.LoginPage();
+        };
         return (
             <View style={mainStyle}>
                 <Text style={{fontWeight: 'bold',fontSize: 45,color:'#474c3d', marginTop: 90}}>
@@ -74,8 +78,8 @@ class SignupPage extends Component{
                     style={{width:35, height: 35, marginLeft: 155, marginTop:70}}
                     source={require('../img/go.png')}
                 />
-                <Text style={{fontWeight: 'bold',fontSize: 15, marginTop:50, marginLeft:93, color:'#474c3d'}}>
-                   Already got a account
+                <Text onPress={goToLogin} style={{fontWeight: 'bold',fontSize: 15, marginTop:50, marginLeft:93, color:'#474c3d'}}>
+                   Already got a account?
                 </Text>
             </View>
         );

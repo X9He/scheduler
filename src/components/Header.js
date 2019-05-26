@@ -2,18 +2,32 @@ import React from 'react';
 import {Text, Button, View } from 'react-native';
 import Menu, { MenuItem, MenuDivider, Position } from "react-native-enhanced-popup-menu";
 // import Icon from 'react-native-vector-icons/FontAwesome';
+import {Actions} from "react-native-router-flux";
+import AddEvent from "./AddEvent";
 
 const Header = (props) =>{
     const {viewStyleRo, viewStyleLe, viewStyleRi } = styles;
 
     let textRef = React.createRef();
     let menuUserRef = null;
-   
+
     const setUserMenuRef = ref => menuUserRef = ref;
     const hideUserMenu = () => menuUserRef.hide();
+
     const showUserMenu = () => menuUserRef.show(textRef.current, stickTo = Position.BOTTOM_LEFT);
-   
+
     const onUserPress = () => showUserMenu();
+
+    const goToLogin = () => {
+        Actions.LoginPage();
+        menuUserRef.hide();
+    };
+
+
+    const goToAddEvent = () => {
+        Actions.AddEvent();
+        menuUserRef.hide();
+    };
 
     return (
         <View style={viewStyleRo}>
@@ -35,7 +49,7 @@ const Header = (props) =>{
                     <MenuItem onPress={hideUserMenu} disabled>Profile</MenuItem>
                     <MenuItem onPress={hideUserMenu}>Setting</MenuItem>
                     <MenuDivider />
-                    <MenuItem onPress={hideUserMenu}>Sign In</MenuItem>
+                    <MenuItem onPress={goToLogin}>Sign In</MenuItem>
                 </Menu>
 
 
@@ -45,7 +59,7 @@ const Header = (props) =>{
             </View>
             <View style={viewStyleRi}>
                 <Button color={'#6d775c'} onPress={console.log('pressed')} title={props.searchText}/>
-                <Button color={'#6d775c'} onPress={console.log('pressed')} title={props.addText}/>
+                <Button color={'#6d775c'} onPress={goToAddEvent} title={props.addText}/>
             </View>
         </View>);
 };

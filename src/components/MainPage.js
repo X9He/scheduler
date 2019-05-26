@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {View} from "react-native";
-import Header from "./header";
+import Header from "./Header";
 import DaySchedule from "./DaySchedule";
+import { Actions } from 'react-native-router-flux'
 
 class MainPage extends Component {
     componentWillMount () {
