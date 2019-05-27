@@ -20,7 +20,7 @@ class LoginPage extends Component{
             Actions.SignupPage();
         };
         return (
-            <View>
+            <View style={{flex: 1, backgroundColor: 'white'}}>
                 <View style={infoStyle}>
                     <Image
                         style={{width:100 , height: 100, marginLeft:140, marginBottom: 40}}
