@@ -19,7 +19,7 @@ class DaySchedule extends Component {
 
         return (
             <ScrollView>
-                <View>
+                <View style={{backgroundColor: 'white'}}>
                     <Header userText={'User'} dayText={'Day'} weekText={'Week'} monText={'Month'}
                             searchText={'Search'} addText={'Add'}/>
                     <View style={topStyle}/>
@@ -48,7 +48,7 @@ class DaySchedule extends Component {
                     <DefaultHourTemplate hourText={'10 PM'}/>
                     <DefaultHourTemplate hourText={'11 PM'}/>
                     <DefaultHourTemplate hourText={'12 PM'}/>
-                    <DefaultHourTemplate hourText={''}/>
+                    {/*<DefaultHourTemplate hourText={''}/>*/}
                 </View>
             </ScrollView>);
     }
@@ -56,6 +56,7 @@ class DaySchedule extends Component {
 
 const styles = {
     topStyle: {
+        backgroundColor:'white',
         position:'absolute',
         height: 10,
         width: '100%'
