@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {DatePickerIOS,Text, View, TextInput, Image, ScrollView, Switch} from 'react-native';
+import {DatePickerIOS,Text, View, TextInput, Image, ScrollView, Switch, TouchableOpacity} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import moment from 'moment';
 import EventHeader from "./EventHeader";
+import Toast, {DURATION} from 'react-native-easy-toast';
 
 
 class AddEvent extends Component{
@@ -12,44 +13,76 @@ class AddEvent extends Component{
             titleT:'',
             locationT:'',
             noteT:'',
-            startDate:new moment().format('MMMM D, YYYY   h:mm a'),
-            endDate:new moment().format('MMMM D, YYYY   h:mm a'),
             allDay:false,
-            chosenSDate: new Date(),
-            chosenEDate: new Date(),
+            chosenSDate: AddEvent.roundHour(new Date()),
+            chosenEDate: AddEvent.roundHour(new Date()),
+            startDate: null,
+            endDate: null,
             start:false,
             end: false,
             setS:false
         };
 
-        this.setDate = this.setDate.bind(this);
+        this.setSDate = this.setSDate.bind(this);
+        this.setEDate = this.setEDate.bind(this);
     }
-    setDate(newDate) {
-        if (this.state.setS == true){
-            this.setState({chosenSDate: newDate});
-            this.setState({startDate: new moment(newDate).format('MMMM D, YYYY   h:mm a')});
+
+    componentWillMount(): void {
+        this.setState({startDate: new moment(this.state.chosenSDate).format('MMMM D, YYYY   h:mm a')});
+        this.setState({endDate: new moment(this.state.chosenEDate).format('MMMM D, YYYY   h:mm a')});
+    }
+
+    static roundHour(date) {
+        date.setHours(date.getHours() + Math.round(date.getMinutes()/60));
+        date.setMinutes(0);
+        return date;
+    }
+
+
+    static roundFiveMinutes(date) {
+        let coeff = 1000 * 60 * 5;
+        let rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
+        return rounded;
+    }
+
+    setSDate(newDate){
+        let toSet = AddEvent.roundFiveMinutes(newDate);
+        this.setState({chosenSDate: toSet});
+        this.setState({startDate: new moment(toSet).format('MMMM D, YYYY   h:mm a')});
+    }
+
+    setEDate(newDate){
+        let toSet = AddEvent.roundFiveMinutes(newDate);
+        if (toSet < this.state.chosenSDate) {
+            this.refs.toast.show('End time must not be less than begin time!', 1000, () => {
+                this.setState({chosenEDate: this.state.chosenSDate});
+                this.setState({endDate: new moment(this.state.chosenSDate).format('MMMM D, YYYY   h:mm a')});
+            });
         } else {
-            this.setState({chosenEDate: newDate});
-            this.setState({endDate: new moment(newDate).format('MMMM D, YYYY   h:mm a')});
+            this.setState({chosenEDate: toSet});
+            this.setState({endDate: new moment(toSet).format('MMMM D, YYYY   h:mm a')});
         }
     }
 
     showStart = () => {
-        if (this.state.start == true) {
-            this.setState({setS: true});
-            this.setState({ start: false });
-        } else {
-            this.setState({ start: true });
-            this.setState({setS: true});
+        console.log('showStart started!');
+        this.setState({
+            start: !this.state.start
+        });
+        if (!this.state.start) {
+            this.setState({
+                end: false
+            });
         }
     };
     showEnd = () => {
-        if (this.state.end == true) {
-            this.setState({setS: false});
-            this.setState({ end: false });
-        } else {
-            this.setState({ end: true });
-            this.setState({setS: false});
+        this.setState({
+            end: !this.state.end
+        });
+        if (!this.state.end) {
+            this.setState({
+                start: false
+            });
         }
     };
 
@@ -61,6 +94,7 @@ class AddEvent extends Component{
         return (
             <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
                 <View>
+                    <Toast ref="toast"/>
                     <EventHeader cancelText={'Cancel'} addText={'Add'}/>
                     <View style={titleStyle}>
                         <TextInput
@@ -87,39 +121,43 @@ class AddEvent extends Component{
                                 onValueChange ={(allDay)=>this.setState({allDay})}/>
                     </View>
 
-                    <View style={selectStyle2}>
-                        <Text
-                            style={{fontSize: 15, color: '#474c3d', marginLeft:5}}>
-                            Starts
-                        </Text>
-                        <Text
-                            style={{fontSize: 15, color: '#474c3d', marginRight:5}}
-                            onPress={this.showStart}>
-                            {this.state.startDate}
-                        </Text>
-                    </View>
+                    {/*begin time datet picker*/}
+
+                    <TouchableOpacity onPress={this.showStart}>
+                        <View style={selectStyle2}>
+                            <Text
+                                style={{fontSize: 15, color: '#474c3d', marginLeft:5}}>
+                                Starts
+                            </Text>
+                            <Text
+                                style={{fontSize: 15, color: '#474c3d', marginRight:5}}>
+                                {this.state.startDate}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
                     {this.state.start ? (
                          <DatePickerIOS
                             date={this.state.chosenSDate}
-                            onDateChange={this.setDate}
+                            onDateChange={this.setSDate}
                         />
                     ) : null}
 
-
-                    <View style={selectStyle2}>
-                        <Text style={{fontSize: 15, color:'#474c3d',marginLeft:5}}>
-                            Ends
-                        </Text>
-                        <Text
-                            style={{fontSize: 15, color: '#474c3d', marginRight:5}}
-                            onPress={this.showEnd}>
-                            {this.state.endDate}
-                        </Text>
-                    </View>
+                    {/*end time datet picker*/}
+                    <TouchableOpacity onPress={this.showEnd}>
+                        <View style={selectStyle2}>
+                            <Text style={{fontSize: 15, color:'#474c3d',marginLeft:5}}>
+                                Ends
+                            </Text>
+                            <Text
+                                style={{fontSize: 15, color: '#474c3d', marginRight:5}}>
+                                {this.state.endDate}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
                     {this.state.end ? (
                         <DatePickerIOS
                             date={this.state.chosenEDate}
-                            onDateChange={this.setDate}
+                            onDateChange={this.setEDate}
                         />
                     ) : null}
 
