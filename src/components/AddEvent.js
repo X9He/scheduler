@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import {DatePickerIOS,Text, View, TextInput, Image, ScrollView, Switch, TouchableOpacity} from 'react-native';
-import DatePicker from 'react-native-datepicker';
+import React, {Component} from 'react';
+import {DatePickerIOS, ScrollView, Switch, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import moment from 'moment';
 import EventHeader from "./EventHeader";
-import { connect } from 'react-redux';
-import Toast, {DURATION} from 'react-native-easy-toast';
+import {connect} from 'react-redux';
+import Toast from 'react-native-easy-toast';
 import {Actions} from "react-native-router-flux";
 
 
@@ -31,7 +30,14 @@ class AddEvent extends Component{
 
     addEventToRedux = () => {
         if(this.state.titleT !== '') {
-            this.props.addEventToState();
+            this.props.addEventToState({
+                title: this.state.titleT,
+                beginTime: this.state.chosenSDate.toJSON(),
+                endTime: this.state.chosenEDate.toJSON(),
+                eventType: 1,
+                eventColor: "#F4AFAB",
+                requireNotification: true
+            });
             Actions.DaySchedule();
         } else {
             this.refs.toast.show('Title must not be empty!', 1000);
@@ -49,11 +55,9 @@ class AddEvent extends Component{
         return date;
     };
 
-
     static roundFiveMinutes(date) {
         let coeff = 1000 * 60 * 5;
-        let rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
-        return rounded;
+        return new Date(Math.round(date.getTime() / coeff) * coeff);
     }
 
     setSDate(newDate){
@@ -86,6 +90,7 @@ class AddEvent extends Component{
             });
         }
     };
+
     showEnd = () => {
         this.setState({
             end: !this.state.end
@@ -96,7 +101,6 @@ class AddEvent extends Component{
             });
         }
     };
-
 
     render() {
         const { titleStyle, selectStyle1, selectStyle2 } = styles;
@@ -235,7 +239,7 @@ const mapDispatchToProps = dispatch => {
         addEventToState: (event) => {
             dispatch({
                 type: 'ADD_EVENT',
-                event: { ... event}
+                event: event
             })
         }
     };
