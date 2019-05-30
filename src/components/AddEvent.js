@@ -7,6 +7,7 @@ import Toast, {DURATION} from 'react-native-easy-toast';
 
 
 class AddEvent extends Component{
+
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +21,9 @@ class AddEvent extends Component{
             endDate: null,
             start:false,
             end: false,
-            setS:false
+            setS:false,
+            repeat: 'Never',
+            alert: 'None'
         };
 
         this.setSDate = this.setSDate.bind(this);
@@ -91,6 +94,15 @@ class AddEvent extends Component{
         let title
         let location
         const { titleStyle, selectStyle1, selectStyle2 } = styles;
+
+        const selectRepeat = () => {
+            Actions.RepeatPage();
+        };
+
+        const selectAlert = () => {
+            Actions.AlertPage();
+        };
+
         return (
             <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
                 <View>
@@ -106,8 +118,9 @@ class AddEvent extends Component{
                         <TextInput
                             style={{height: 40, backgroundColor: '#f0f7e8', marginTop:3}}
                             placeholder=" Location"
+                            editable={true}
+                            maxLength={40}
                             onChangeText={(locationT) => this.setState({locationT})} value={this.state.locationT}
-                            editable={true} maxLength={40}
                         />
                     </View>
 
@@ -166,15 +179,22 @@ class AddEvent extends Component{
                         <Text style={{fontSize: 15, color:'#474c3d',marginLeft:5}}>
                             Repeat
                         </Text>
-                        <Text style={{fontSize: 15, color:'#acafa7',marginRight:5}}>
-                            Never >
+                        <Text
+                            style={{fontSize: 15, color:'#acafa7',marginRight:5}}
+                            onPress={selectRepeat}>
+                            {this.state.repeat} >
                         </Text>
                     </View>
 
 
-                    <View style={selectStyle2}>
+                    <View style={selectStyle2} onPress={selectAlert}>
                         <Text style={{fontSize: 15, color:'#474c3d',marginLeft:5}}>
                             Alert
+                        </Text>
+                        <Text
+                            style={{fontSize: 15, color:'#acafa7',marginRight:5}}
+                            onPress={selectAlert}>
+                            {this.state.alert} >
                         </Text>
                     </View>
 

@@ -111,9 +111,12 @@ class DaySchedule extends Component {
 
 const styles = {
     eventParentStyle: {
+        backgroundColor:'white',
         position:'absolute'
     },
     dayScheduleMainBody: {
+        // flex:1,
+        backgroundColor:'white',
         position:'relative'
     }
 };
