@@ -14,10 +14,10 @@ const EventHeader = (props) =>{
     return (
         <View style={mainStyle}>
             <Button fontSize={20} color={'#6d775c'} onPress={goToDay} title={props.cancelText}/>
-            <Text style={{fontWeight:'bold', fontSize:20, color: '#474c3d', marginRight:20, top:-5}}>
+            <Text style={{fontWeight:'bold', fontSize:20, color: '#474c3d', marginRight:20, top:-7}}>
                 New Event
             </Text>
-            <Button fontSize={20} color={'#b0c18f'} disabled={true} onPress={console.log('pressed')} title={props.addText}/>
+            <Button fontSize={18} color={'#b0c18f'} disabled={true} onPress={console.log('pressed')} title={props.addText}/>
         </View>);
 };
 
