@@ -1,4 +1,8 @@
 import { combineReducers } from 'redux';
 import data from './eventsMock.json';
 
-export default () => data;
+const EventReducer = (state, action) => {
+    return data;
+};
+
+export default EventReducer;

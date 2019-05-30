@@ -17,7 +17,7 @@ const EventHeader = (props) =>{
             <Text style={{fontWeight:'bold', fontSize:20, color: '#474c3d', marginRight:20, top:-5}}>
                 New Event
             </Text>
-            <Button fontSize={20} color={'#b0c18f'} disabled={true} onPress={console.log('pressed')} title={props.addText}/>
+            <Button fontSize={20} color={'#6d775c'} onPress={props.addEventToRedux} title={props.addText}/>
         </View>);
 };
 
