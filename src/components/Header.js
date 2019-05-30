@@ -23,6 +23,9 @@ const Header = (props) =>{
         menuUserRef.hide();
     };
 
+    const goToSearch = () => {
+        Actions.SearchPage();
+    }
 
     const goToAddEvent = () => {
         Actions.AddEvent();
@@ -58,7 +61,7 @@ const Header = (props) =>{
                 <Button color={'#b0c18f'} onPress={console.log('pressed')} title={props.monText}/>
             </View>
             <View style={viewStyleRi}>
-                <Button color={'#6d775c'} onPress={console.log('pressed')} title={props.searchText}/>
+                <Button color={'#6d775c'} onPress={goToSearch} title={props.searchText}/>
                 <Button color={'#6d775c'} onPress={goToAddEvent} title={props.addText}/>
             </View>
         </View>);

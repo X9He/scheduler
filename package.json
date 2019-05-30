@@ -12,9 +12,12 @@
     "react-native": "0.59.8",
     "react-native-datepicker": "^1.7.2",
     "react-native-easy-toast": "^1.2.0",
+    "react-native-elements": "^1.1.0",
     "react-native-enhanced-popup-menu": "^0.6.1",
     "react-native-gesture-handler": "^1.2.1",
     "react-native-router-flux": "^4.0.6",
+    "react-native-search-bar": "^3.4.2",
+    "react-native-vector-icons": "^6.4.2",
     "react-navigation": "^3.11.0",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1"
