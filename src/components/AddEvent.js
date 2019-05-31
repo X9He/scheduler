@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import {DatePickerIOS,Text, View, TextInput, Image, ScrollView, Switch, TouchableOpacity} from 'react-native';
-import DatePicker from 'react-native-datepicker';
+import React, {Component} from 'react';
+import {DatePickerIOS, ScrollView, Switch, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import moment from 'moment';
 import EventHeader from "./EventHeader";
-import Toast, {DURATION} from 'react-native-easy-toast';
+import {connect} from 'react-redux';
+import Toast from 'react-native-easy-toast';
+import {Actions} from "react-native-router-flux";
 
 
 class AddEvent extends Component{
@@ -30,22 +31,36 @@ class AddEvent extends Component{
         this.setEDate = this.setEDate.bind(this);
     }
 
+    addEventToRedux = () => {
+        if(this.state.titleT !== '') {
+            this.props.addEventToState({
+                title: this.state.titleT,
+                beginTime: this.state.chosenSDate.toJSON(),
+                endTime: this.state.chosenEDate.toJSON(),
+                eventType: 1,
+                eventColor: "#F4AFAB",
+                requireNotification: true
+            });
+            Actions.DaySchedule();
+        } else {
+            this.refs.toast.show('Title must not be empty!', 1000);
+        }
+    };
+
     componentWillMount(): void {
         this.setState({startDate: new moment(this.state.chosenSDate).format('MMMM D, YYYY   h:mm a')});
         this.setState({endDate: new moment(this.state.chosenEDate).format('MMMM D, YYYY   h:mm a')});
     }
 
-    static roundHour(date) {
+    static roundHour = (date) => {
         date.setHours(date.getHours() + Math.round(date.getMinutes()/60));
         date.setMinutes(0);
         return date;
-    }
-
+    };
 
     static roundFiveMinutes(date) {
         let coeff = 1000 * 60 * 5;
-        let rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
-        return rounded;
+        return new Date(Math.round(date.getTime() / coeff) * coeff);
     }
 
     setSDate(newDate){
@@ -78,6 +93,7 @@ class AddEvent extends Component{
             });
         }
     };
+
     showEnd = () => {
         this.setState({
             end: !this.state.end
@@ -89,10 +105,7 @@ class AddEvent extends Component{
         }
     };
 
-
     render() {
-        let title
-        let location
         const { titleStyle, selectStyle1, selectStyle2 } = styles;
 
         const selectRepeat = () => {
@@ -107,20 +120,19 @@ class AddEvent extends Component{
             <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
                 <View>
                     <Toast ref="toast"/>
-                    <EventHeader cancelText={'Cancel'} addText={'Add'}/>
+                    <EventHeader addEventToRedux={this.addEventToRedux} cancelText={'Cancel'} addText={'Add'}/>
                     <View style={titleStyle}>
                         <TextInput
                             style={{height: 40, backgroundColor: '#f0f7e8', marginTop: 15}}
                             placeholder=" Title"
-                            onChangeText={(titleT) => this.setState({titleT})} value={this.state.titleT}
+                            onChangeText={(input) => { this.setState({ titleT: input})}}
                             editable={true} maxLength={40}
                         />
                         <TextInput
                             style={{height: 40, backgroundColor: '#f0f7e8', marginTop:3}}
                             placeholder=" Location"
-                            editable={true}
-                            maxLength={40}
-                            onChangeText={(locationT) => this.setState({locationT})} value={this.state.locationT}
+                            onChangeText={(input) => { this.setState({ locationT: input})}}
+                            editable={true} maxLength={40}
                         />
                     </View>
 
@@ -239,6 +251,17 @@ const styles = {
         alignItems: 'center',
         flexDirection: 'row'
     }
-}
+};
 
-export default AddEvent;
+const mapDispatchToProps = dispatch => {
+    return {
+        addEventToState: (event) => {
+            dispatch({
+                type: 'ADD_EVENT',
+                event: event
+            })
+        }
+    };
+};
+
+export default connect(null, mapDispatchToProps)(AddEvent);

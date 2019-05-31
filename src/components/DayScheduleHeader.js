@@ -1,10 +1,9 @@
 import React from 'react';
 import {Text, Button, View } from 'react-native';
-import Menu, { MenuItem, MenuDivider, Position } from "react-native-enhanced-popup-menu";
 import {Actions} from "react-native-router-flux";
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
-const EventHeader = (props) =>{
+const DayScheduleHeader = (props) =>{
     const {mainStyle } = styles;
 
     const goToDay = () => {
@@ -13,11 +12,8 @@ const EventHeader = (props) =>{
 
     return (
         <View style={mainStyle}>
-            <Button fontSize={20} color={'#6d775c'} onPress={goToDay} title={props.cancelText}/>
-            <Text style={{fontWeight:'bold', fontSize:20, color: '#474c3d', marginRight:20, top:-7}}>
-                New Event
-            </Text>
-            <Button fontSize={20} color={'#6d775c'} onPress={props.addEventToRedux} title={props.addText}/>
+            <Button title={'props.cancelText'}/>
+            <Button title={props.addText}/>
         </View>);
 };
 
@@ -38,4 +34,4 @@ const styles = {
     }
 };
 
-export default EventHeader;
+export default DayScheduleHeader;
