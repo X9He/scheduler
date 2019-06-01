@@ -14,18 +14,20 @@ class AlertPage extends Component{
             fifteen: '15 minutes before',
             thirty: '30 minutes before',
             oneHour: '1 hour before',
-            twoHour: '2 hour before',
+            twoHour: '2 hours before',
             oneDay: '1 day before',
-            twoDay: '2 day before',
+            twoDay: '2 days before',
             oneWeek: '1 week before',
-            choice: 1
+            choiceA: this.props.Alert
         }
         this.goSelect = this.goSelect.bind(this);
     }
 
-    goSelect(num){
-        this.setState({choice: num});
-        // Actions.prevScene();
+    goSelect(alert){
+        this.setState({choiceA: alert}, function() {
+            Actions.AddEvent({choiceA: this.state.choiceA, R:this.props.Repeat});
+        });
+        //     Actions.AddEvent();
     };
 
 
@@ -46,12 +48,12 @@ class AlertPage extends Component{
                     </Text>
                 </View>
 
-                <TouchableOpacity style={{marginTop:15}} onPress={() => this.goSelect(1)}>
+                <TouchableOpacity style={{marginTop:15}} onPress={() => this.goSelect('None')}>
                     <View style={timeStyle}>
                         <Text style={textStyle}>
                             {this.state.none}
                         </Text>
-                        {this.state.choice===1 ? (
+                        {this.state.choiceA==='None' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -59,12 +61,12 @@ class AlertPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:15}} onPress={() => this.goSelect(2)}>
+                <TouchableOpacity style={{marginTop:15}} onPress={() => this.goSelect('At time of event')}>
                     <View style={timeStyle}>
                         <Text style={textStyle}>
                             {this.state.atTime}
                         </Text>
-                        {this.state.choice===2 ? (
+                        {this.state.choiceA==='At time of event' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -72,12 +74,12 @@ class AlertPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(3)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('5 minutes before')}>
                     <View style={timeStyle}>
                         <Text style={textStyle}>
                             {this.state.five}
                         </Text>
-                        {this.state.choice===3 ? (
+                        {this.state.choiceA==='5 minutes before' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -85,12 +87,12 @@ class AlertPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(4)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('15 minutes before')}>
                     <View style={timeStyle}>
                         <Text style={textStyle}>
                             {this.state.fifteen}
                         </Text>
-                        {this.state.choice===4 ? (
+                        {this.state.choiceA==='15 minutes before' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -98,12 +100,12 @@ class AlertPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(5)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('20 minutes before')}>
                     <View style={timeStyle}>
                         <Text style={textStyle}>
                             {this.state.thirty}
                         </Text>
-                        {this.state.choice===5 ? (
+                        {this.state.choiceA==='20 minutes before' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -111,24 +113,24 @@ class AlertPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(6)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('1 hour before')}>
                     <View style={timeStyle}>
                         <Text style={textStyle}>
                             {this.state.oneHour}
                         </Text>
-                        {this.state.choice===6 ? (
+                        {this.state.choiceA==='1 hour before' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
                         ) : null}
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(7)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('2 hours before')}>
                     <View style={timeStyle}>
                         <Text style={textStyle}>
                             {this.state.twoHour}
                         </Text>
-                        {this.state.choice===7 ? (
+                        {this.state.choiceA==='2 hours before' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -136,12 +138,12 @@ class AlertPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(8)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('1 day before')}>
                     <View style={timeStyle}>
                         <Text style={textStyle}>
                             {this.state.oneDay}
                         </Text>
-                        {this.state.choice===8 ? (
+                        {this.state.choiceA==='1 day1 before' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -149,12 +151,12 @@ class AlertPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(9)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('2 days before')}>
                     <View style={timeStyle}>
                         <Text style={textStyle}>
                             {this.state.twoDay}
                         </Text>
-                        {this.state.choice===9 ? (
+                        {this.state.choiceA==='2 days before' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -162,12 +164,12 @@ class AlertPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(10)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('1 week before')}>
                     <View style={timeStyle}>
                         <Text style={textStyle}>
                             {this.state.oneWeek}
                         </Text>
-                        {this.state.choice===10 ? (
+                        {this.state.choiceA==='1 week before' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
