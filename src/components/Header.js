@@ -32,6 +32,18 @@ const Header = (props) =>{
         menuUserRef.hide();
     };
 
+    const goToWeek = () => {
+        Actions.WeekSchedule();
+    }
+
+    const goToDay = () => {
+        Actions.DaySchedule();
+    }
+
+    const gotoMonth = () => {
+        Actions.MonthSchedule();
+    }
+
     return (
         <View style={viewStyleRo}>
             <View style={viewStyleLe}>
@@ -56,9 +68,9 @@ const Header = (props) =>{
                 </Menu>
 
 
-                <Button color={'#6d775c'} onPress={console.log('pressed')} title={props.dayText}/>
-                <Button color={'#b0c18f'} onPress={console.log('pressed')} title={props.weekText}/>
-                <Button color={'#b0c18f'} onPress={console.log('pressed')} title={props.monText}/>
+                <Button color={'#6d775c'} onPress={goToDay} title={props.dayText}/>
+                <Button color={'#b0c18f'} onPress={goToWeek} title={props.weekText}/>
+                <Button color={'#b0c18f'} onPress={gotoMonth} title={props.monText}/>
             </View>
             <View style={viewStyleRi}>
                 <Button color={'#6d775c'} onPress={goToSearch} title={props.searchText}/>
@@ -77,13 +89,13 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'baseline',
         flexDirection: 'row',
-        height: 90,
-        paddingTop: 45,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        elevation: 2,
-        position: 'relative'
+        height: 80,
+        paddingTop: 42,
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 2 },
+        // shadowOpacity: 0.2,
+        // elevation: 2,
+        // position: 'relative'
     },
     viewStyleLe: {
         backgroundColor: 'white',

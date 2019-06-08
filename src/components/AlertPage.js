@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {DatePickerIOS, Text, View, TextInput, Image, ScrollView, Switch, Button, TouchableOpacity} from 'react-native';
+import {Text, View, Button, TouchableOpacity} from 'react-native';
 import {Actions} from "react-native-router-flux";
 
 class AlertPage extends Component{
@@ -56,6 +56,7 @@ class AlertPage extends Component{
                         {this.state.choiceA==='None' ? (
                             <Text style={choiceStyle}>
                                 😆
+
                             </Text>
                         ) : null}
                     </View>
@@ -143,7 +144,7 @@ class AlertPage extends Component{
                         <Text style={textStyle}>
                             {this.state.oneDay}
                         </Text>
-                        {this.state.choiceA==='1 day1 before' ? (
+                        {this.state.choiceA==='1 day before' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
