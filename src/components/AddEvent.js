@@ -23,8 +23,8 @@ class AddEvent extends Component{
             start:false,
             end: false,
             setS:false,
-            repeat: 'Never',
-            alert: 'None'
+            Repeat: this.props.R,
+            Alert: this.props.A
         };
 
         this.setSDate = this.setSDate.bind(this);
@@ -105,15 +105,20 @@ class AddEvent extends Component{
         }
     };
 
+
     render() {
         const { titleStyle, selectStyle1, selectStyle2 } = styles;
 
         const selectRepeat = () => {
-            Actions.RepeatPage();
+            this.setState({Repeat: this.props.choiceR},function() {
+                Actions.RepeatPage({Repeat: this.props.choiceR ,Alert: this.state.Alert});
+            });
         };
 
         const selectAlert = () => {
-            Actions.AlertPage();
+            this.setState({Alert: this.props.choiceA},function() {
+                Actions.AlertPage({Alert: this.props.choiceA,Repeat: this.state.Repeat});
+            });
         };
 
         return (
@@ -186,29 +191,30 @@ class AddEvent extends Component{
                         />
                     ) : null}
 
+                    <TouchableOpacity onPress={selectRepeat}>
+                        <View style={selectStyle2}>
+                            <Text style={{fontSize: 15, color:'#474c3d',marginLeft:5}}>
+                                Repeat
+                            </Text>
+                            <Text
+                                style={{fontSize: 15, color:'#acafa7',marginRight:5}}>
+                                {this.props.choiceR} >
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
 
-                    <View style={selectStyle2}>
-                        <Text style={{fontSize: 15, color:'#474c3d',marginLeft:5}}>
-                            Repeat
-                        </Text>
-                        <Text
-                            style={{fontSize: 15, color:'#acafa7',marginRight:5}}
-                            onPress={selectRepeat}>
-                            {this.state.repeat} >
-                        </Text>
-                    </View>
 
-
-                    <View style={selectStyle2} onPress={selectAlert}>
-                        <Text style={{fontSize: 15, color:'#474c3d',marginLeft:5}}>
-                            Alert
-                        </Text>
-                        <Text
-                            style={{fontSize: 15, color:'#acafa7',marginRight:5}}
-                            onPress={selectAlert}>
-                            {this.state.alert} >
-                        </Text>
-                    </View>
+                    <TouchableOpacity onPress={selectAlert}>
+                        <View style={selectStyle2}>
+                            <Text style={{fontSize: 15, color:'#474c3d',marginLeft:5}}>
+                                Alert
+                            </Text>
+                            <Text
+                                style={{fontSize: 15, color:'#acafa7',marginRight:5}}>
+                                {this.props.choiceA} >
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
 
                     <View style={titleStyle}>
                         <TextInput

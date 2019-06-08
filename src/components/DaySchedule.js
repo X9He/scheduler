@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, ScrollView } from 'react-native';
 import DefaultHourTemplate from './DefaultHourTemplate';
 import Header from "./Header";
+import WeekSubheader from './WeekSubheader';
+import SwipeableHeader from './SwipeableHeader';
 import { connect } from 'react-redux';
 import Event from "./Event";
 
@@ -72,6 +74,7 @@ class DaySchedule extends Component {
             <View stlye={dayScheduleMainBody}>
                 <Header userText={'User'} dayText={'Day'} weekText={'Week'} monText={'Month'}
                         searchText={'Search'} addText={'Add'}/>
+                <SwipeableHeader/>
                 <ScrollView stlye={dayScheduleMainBody}>
                     {this.events}
                     {/*<Event eventStyle={this.eventStyle} title={'Temporary place holder'}/>*/}
@@ -115,7 +118,6 @@ const styles = {
         position:'absolute'
     },
     dayScheduleMainBody: {
-        // flex:1,
         backgroundColor:'white',
         position:'relative'
     }

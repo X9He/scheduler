@@ -9,19 +9,24 @@ class RepeatPage extends Component{
             return: '< New Event',
             repeat: 'Repeat',
             // selected:'',
-            never: 'Never',
+            Never: 'Never',
             everyDay: 'Every Day',
             everyWeek: 'Every Week',
             every2Week: 'Every 2 Weeks',
             everyMonth: 'Every Month',
-            choice:1 // 0->never, 1->everyday, 2->every week, 3->every 2 weeks, 4->everyMonth
+            choiceR:this.props.Repeat // 0->never, 1->everyday, 2->every week, 3->every 2 weeks, 4->everyMonth
         }
         this.goSelect = this.goSelect.bind(this);
     }
 
-    goSelect(num){
-        this.setState({choice: num});
-        // Actions.prevScene();
+    // setRepeat = (select) => {
+    //     this.setState({ Repeat: select });
+    // }
+    goSelect(frequency){
+        this.setState({choiceR: frequency}, function() {
+            Actions.AddEvent({choiceR: this.state.choiceR,A:this.props.Alert});
+        });
+    //     Actions.AddEvent();
     };
 
     render() {
@@ -31,22 +36,22 @@ class RepeatPage extends Component{
 
         const { mainStyle,headerStyle,frequencyStyle,textStyle,choiceStyle } = styles;
         return (
-            <View style={mainStyle}>
+            <View style={mainStyle} >
                 <View style={headerStyle}>
                     <Button color={'#6d775c'}
                         onPress={goNewEvent}
-                        title={this.state.return} />
+                        title={this.state.return}/>
                     <Text style={{fontWeight:'bold', fontSize:20, color: '#474c3d', marginLeft:40, top:-7}}>
                         {this.state.repeat}
                     </Text>
                 </View>
 
-                <TouchableOpacity style={{marginTop:15}} onPress={() => this.goSelect(1)}>
+                <TouchableOpacity style={{marginTop:15}} onPress={() => this.goSelect('Never')}>
                     <View style={frequencyStyle}>
                         <Text style={textStyle}>
-                            {this.state.never}
+                            {this.state.Never}
                         </Text>
-                        {this.state.choice===1 ? (
+                        {this.state.choiceR==='Never' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -54,12 +59,12 @@ class RepeatPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(2)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('Every Day')}>
                     <View style={frequencyStyle}>
                         <Text style={textStyle}>
                             {this.state.everyDay}
                         </Text>
-                        {this.state.choice===2 ? (
+                        {this.state.choiceR==='Every Day' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -67,12 +72,12 @@ class RepeatPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(3)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('Every Week')}>
                     <View style={frequencyStyle}>
                         <Text style={textStyle}>
                             {this.state.everyWeek}
                         </Text>
-                        {this.state.choice===3 ? (
+                        {this.state.choiceR==='Every Week' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -80,12 +85,12 @@ class RepeatPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(4)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('Every 2 Weeks')}>
                     <View style={frequencyStyle}>
                         <Text style={textStyle}>
                             {this.state.every2Week}
                         </Text>
-                        {this.state.choice===4 ? (
+                        {this.state.choiceR==='Every 2 Weeks' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
@@ -93,12 +98,12 @@ class RepeatPage extends Component{
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect(5)}>
+                <TouchableOpacity style={{marginTop:-8}} onPress={() => this.goSelect('Every Month')}>
                     <View style={frequencyStyle}>
                         <Text style={textStyle}>
                             {this.state.everyMonth}
                         </Text>
-                        {this.state.choice===5 ? (
+                        {this.state.choiceR==='Every Month' ? (
                             <Text style={choiceStyle}>
                                 😆
                             </Text>
