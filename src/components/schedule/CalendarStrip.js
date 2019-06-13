@@ -31,11 +31,6 @@ import {connect} from "react-redux";
 
 const width = Dimensions.get('window').width;
 const ITEM_LENGTH = width / 7;
-const _today = new Date();
-const _year = _today.getFullYear();
-const _month = _today.getMonth();
-const _day = _today.getDate();
-const TODAY = new Date(_year, _month, _day); // FORMAT: Wed May 16 2018 00:00:00 GMT+0800 (CST)
 
 class DateItem extends PureComponent {
     render() {
@@ -84,6 +79,8 @@ class DateItem extends PureComponent {
 }
 
 class CalendarStrip extends Component {
+    TODAY = this.props.session.cur_date; // FORMAT: Wed May 16 2018 00:00:00 GMT+0800 (CST)
+
     constructor(props) {
         super(props);
         this.state = {
@@ -173,8 +170,8 @@ class CalendarStrip extends Component {
 
     getInitialDates() {
         // const todayInWeek = getDay(TODAY);
-        const last2WeekOfToday = subDays(TODAY, 7 * 2);
-        const next2WeekOfToday = addDays(TODAY, 7 * 2);
+        const last2WeekOfToday = subDays(this.TODAY, 7 * 2);
+        const next2WeekOfToday = addDays(this.TODAY, 7 * 2);
         const startLast2Week = startOfWeek(last2WeekOfToday);
         const endNext2Week = endOfWeek(next2WeekOfToday);
         const eachDays = eachDay(startLast2Week, endNext2Week);
@@ -219,7 +216,7 @@ class CalendarStrip extends Component {
                 {!this.state.isTodayVisible &&
                 <TouchableOpacity style={styles.headerGoTodayButton} onPress={() => {
                     const page = this.state.pageOfToday;
-                    onPressGoToday && onPressGoToday(TODAY);
+                    onPressGoToday && onPressGoToday(this.TODAY);
                     this.scrollToPage(page);
                 }}>
                     <Text style={styles.todayText}>T</Text>

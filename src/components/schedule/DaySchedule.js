@@ -7,9 +7,6 @@ import Event from "../Event";
 class DaySchedule extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            events: []
-        }
     }
 
     eventStyle = {

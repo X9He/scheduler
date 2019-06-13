@@ -16,8 +16,8 @@ class AddEvent extends Component{
             locationT:'',
             noteT:'',
             allDay:false,
-            chosenSDate: AddEvent.roundHour(new Date()),
-            chosenEDate: AddEvent.roundHour(new Date()),
+            chosenSDate: AddEvent.roundHour(this.props.session.cur_date),
+            chosenEDate: AddEvent.roundHour(this.props.session.cur_date),
             startDate: null,
             endDate: null,
             start:false,
@@ -270,4 +270,10 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(AddEvent);
+const mapStateToProps = state => {
+    console.log('mapstatetoprops', state);
+    return {session: state.session};
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddEvent);

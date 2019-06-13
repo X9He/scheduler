@@ -12,7 +12,7 @@ class SwipeableHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedDate: new Date()
+            selectedDate: this.props.session.cur_date
         }
     }
     render() {
