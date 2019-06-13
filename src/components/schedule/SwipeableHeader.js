@@ -4,6 +4,7 @@ import Swiper from 'react-native-swiper'
 import DayScheduleHeader from "./DayScheduleHeader";
 // import CalendarStrip from 'react-native-slideable-calendar-strip';
 import CalendarStrip from './CalendarStrip';
+import {connect} from "react-redux";
 
 const width = Dimensions.get('window').width;
 
@@ -59,6 +60,18 @@ const styles = {
         borderColor: '#ddd',
         position: 'relative'
     }
-}
+};
 
-export default SwipeableHeader;
+const mapStateToPros = state => {
+    console.log('mapstatetoprops', state);
+    return { session : state.session};
+};
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        changeCurDate: (new_date) => dispatch({type: 'SET_CUR_SES_DATE', date: new_date})
+    }
+};
+
+export default connect(mapStateToPros, mapDispatchToProps)(SwipeableHeader);

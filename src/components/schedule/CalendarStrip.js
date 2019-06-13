@@ -27,6 +27,7 @@ import {
 } from 'date-fns';
 import ChineseLunar from 'chinese-lunar';
 import ChineseLocale from 'date-fns/locale/zh_cn';
+import {connect} from "react-redux";
 
 const width = Dimensions.get('window').width;
 const ITEM_LENGTH = width / 7;
@@ -270,7 +271,11 @@ class CalendarStrip extends Component {
                         <DateItem
                             item={item}
                             showLunar={showChineseLunar}
-                            onItemPress={() => onPressDate && onPressDate(item)}
+                            onItemPress={() => {
+                                console.log('pressed date button', item);
+                                this.props.changeCurDate(item);
+                                return onPressDate && onPressDate(item);
+                            }}
                             highlight={isSameDay(selectedDate, item)}
                             marked={marked.find(d => isSameDay(d, item))}
                         />}
@@ -395,4 +400,16 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CalendarStrip;
+const mapStateToPros = state => {
+    console.log('mapstatetoprops', state);
+    return { session : state.session};
+};
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        changeCurDate: (new_date) => dispatch({type: 'SET_CUR_SES_DATE', date: new_date})
+    }
+};
+
+export default connect(mapStateToPros, mapDispatchToProps)(CalendarStrip);
