@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Scene, Router } from 'react-native-router-flux';
-import LoginPage from './components/LoginPage';
-import DaySchedule from "./components/DaySchedule";
+import LoginPage from './components/user/LoginPage';
+import DaySchedule from "./components/schedule/DayScheduleContainer";
 import AddEvent from "./components/AddEvent";
-import SignupPage from "./components/SignupPage";
+import SignupPage from "./components/user/SignupPage";
 import RepeatPage from "./components/RepeatPage";
 import SearchPage from "./components/SearchPage";
 import AlertPage from "./components/AlertPage";
-import WeekSchedule from "./components/WeekSchedule";
-import MonthSchedule from "./components/MonthSchedule";
-import SwipeableHeader from "./components/SwipeableHeader";
+import WeekSchedule from "./components/schedule/WeekSchedule";
+import MonthSchedule from "./components/schedule/MonthSchedule";
+import SwipeableHeader from "./components/schedule/SwipeableHeader";
 
 
 class RouterComponent extends Component {

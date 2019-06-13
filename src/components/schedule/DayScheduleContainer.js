@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, ScrollView } from 'react-native';
 import DefaultHourTemplate from './DefaultHourTemplate';
-import Header from "./Header";
+import Header from "../Header";
 import WeekSubheader from './WeekSubheader';
 import SwipeableHeader from './SwipeableHeader';
 import { connect } from 'react-redux';
-import Event from "./Event";
+import Event from "../Event";
 
-class DaySchedule extends Component {
+class DayScheduleContainer extends Component {
     currentDay = null;
     toRender = [];
     events = [];
@@ -128,4 +128,4 @@ const mapStateToPros = state => {
     return { events : state.events};
 };
 
-export default connect(mapStateToPros)(DaySchedule);
+export default connect(mapStateToPros)(DayScheduleContainer);

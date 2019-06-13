@@ -24,7 +24,7 @@ class LoginPage extends Component{
                 <View style={infoStyle}>
                     <Image
                         style={{width:100 , height: 100, marginLeft:140, marginBottom: 40}}
-                        source={require('../img/icon.png')}
+                        source={require('../../img/icon.png')}
                     />
                     <Text style={{fontWeight: 'bold',fontSize: 45, marginLeft:15,color:'#474c3d'}}>
                         Log in
@@ -51,7 +51,7 @@ class LoginPage extends Component{
                     />
                     <Image
                         style={{width:35 , height: 35, marginLeft:170, marginTop: 40}}
-                        source={require('../img/go.png')}
+                        source={require('../../img/go.png')}
                     />
                 </View>
 

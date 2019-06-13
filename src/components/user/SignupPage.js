@@ -77,7 +77,7 @@ class SignupPage extends Component{
 
                     <Image
                         style={{width:35, height: 35, marginLeft: 155, marginTop:70}}
-                        source={require('../img/go.png')}
+                        source={require('../../img/go.png')}
                     />
                     <Text onPress={goToLogin} style={{fontSize: 15, marginTop:50, marginLeft:93, color:'#474c3d'}}>
                     Already got a account?
