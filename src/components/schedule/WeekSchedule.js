@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, ScrollView } from 'react-native';
-import Header from "./Header";
+import Header from "../Header";
 import WeekSubheader from "./WeekSubheader"
 import { connect } from 'react-redux';
-import Event from "./Event";
+import Event from "../Event";
 
 class WeekSchedule extends Component {
     render() {
